@@ -1,0 +1,85 @@
+CC=g++
+CFLAGS= -w -fPIC -lpthread --std=c++11
+LDFLAGS= -pthread
+RM = rm
+INC	= ./inc
+SOURCE	= ./src/random_source.cpp ./src/linearmatching.cpp ./src/node.cpp ./src/tinythread.cpp ./src/main.cpp ./src/random_util.cpp ./src/pat.cpp ./src/ds.cpp ./src/suffixtrie.cpp ./src/kmers_initparam.cpp ./src/alphabet.cpp ./src/kmers_delimitor.cpp ./src/kmers_reads.cpp ./src/qual.cpp ./src/reorderdrive.cpp ./src/threadwrapper.cpp ./src/search_globals.cpp
+OBJECTS=$(SOURCE:.cpp=.o)
+EXECUTABLE=run
+all: $(SOURCES) $(EXECUTABLE)
+clean:
+	$(RM) $(OBJECTS)
+$(EXECUTABLE): $(OBJECTS) 
+	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
+.cpp.o:
+	$(CC)  -c $(CFLAGS) $< -o $@
+./src/random_source.o: ./inc/random_source.h ./inc/assert_helpers.h
+./src/random_source.o: ./inc/suffix_commons.h ./inc/formats.h
+./src/random_source.o: ./inc/typdefine.h ./inc/timer.h ./inc/random_util.h
+./src/random_source.o: ./inc/ds.h ./inc/threading.h ./inc/tinythread.h
+./src/random_source.o: ./inc/fast_mutex.h
+./src/linearmatching.o: ./inc/linearmatching.h ./inc/suffixtrie.h
+./src/linearmatching.o: ./inc/sstring.h ./inc/assert_helpers.h
+./src/linearmatching.o: ./inc/alphabet.h ./inc/typdefine.h
+./src/linearmatching.o: ./inc/random_source.h ./inc/suffix_commons.h
+./src/linearmatching.o: ./inc/formats.h ./inc/timer.h ./inc/node.h
+./src/node.o: ./inc/node.h
+./src/tinythread.o: ./inc/tinythread.h
+./src/main.o: ./inc/node.h ./inc/reorderdrive.h ./inc/read.h ./inc/ds.h
+./src/main.o: ./inc/assert_helpers.h ./inc/threading.h ./inc/tinythread.h
+./src/main.o: ./inc/fast_mutex.h ./inc/random_source.h ./inc/suffix_commons.h
+./src/main.o: ./inc/formats.h ./inc/typdefine.h ./inc/timer.h ./inc/sstring.h
+./src/main.o: ./inc/alphabet.h ./inc/filebuf.h ./inc/util.h
+./src/main.o: ./inc/kmers_reads.h ./inc/pat.h ./inc/qual.h
+./src/main.o: ./inc/search_globals.h ./inc/kmers_delimitor.h ./inc/tokenize.h
+./src/main.o: ./inc/kmers_initparam.h ./inc/linearmatching.h
+./src/main.o: ./inc/suffixtrie.h
+./src/random_util.o: ./inc/random_util.h ./inc/random_source.h
+./src/random_util.o: ./inc/assert_helpers.h ./inc/suffix_commons.h
+./src/random_util.o: ./inc/formats.h ./inc/typdefine.h ./inc/timer.h
+./src/random_util.o: ./inc/ds.h ./inc/threading.h ./inc/tinythread.h
+./src/random_util.o: ./inc/fast_mutex.h
+./src/pat.o: ./inc/sstring.h ./inc/assert_helpers.h ./inc/alphabet.h
+./src/pat.o: ./inc/typdefine.h ./inc/random_source.h ./inc/suffix_commons.h
+./src/pat.o: ./inc/formats.h ./inc/timer.h ./inc/pat.h ./inc/threading.h
+./src/pat.o: ./inc/tinythread.h ./inc/fast_mutex.h ./inc/filebuf.h
+./src/pat.o: ./inc/qual.h ./inc/search_globals.h ./inc/ds.h ./inc/read.h
+./src/pat.o: ./inc/util.h ./inc/kmers_delimitor.h ./inc/tokenize.h
+./src/ds.o: ./inc/ds.h ./inc/assert_helpers.h ./inc/threading.h
+./src/ds.o: ./inc/tinythread.h ./inc/fast_mutex.h ./inc/random_source.h
+./src/ds.o: ./inc/suffix_commons.h ./inc/formats.h ./inc/typdefine.h
+./src/ds.o: ./inc/timer.h
+./src/suffixtrie.o: ./inc/suffixtrie.h ./inc/sstring.h ./inc/assert_helpers.h
+./src/suffixtrie.o: ./inc/alphabet.h ./inc/typdefine.h ./inc/random_source.h
+./src/suffixtrie.o: ./inc/suffix_commons.h ./inc/formats.h ./inc/timer.h
+./src/suffixtrie.o: ./inc/node.h
+./src/kmers_initparam.o: ./inc/kmers_initparam.h ./inc/suffix_commons.h
+./src/kmers_initparam.o: ./inc/assert_helpers.h ./inc/formats.h
+./src/kmers_initparam.o: ./inc/typdefine.h ./inc/timer.h
+./src/kmers_initparam.o: ./inc/kmers_delimitor.h
+./src/alphabet.o: ./inc/alphabet.h ./inc/typdefine.h ./inc/assert_helpers.h
+./src/kmers_delimitor.o: ./inc/kmers_delimitor.h ./inc/suffix_commons.h
+./src/kmers_delimitor.o: ./inc/assert_helpers.h ./inc/formats.h
+./src/kmers_delimitor.o: ./inc/typdefine.h ./inc/timer.h
+./src/kmers_reads.o: ./inc/kmers_reads.h ./inc/suffix_commons.h
+./src/kmers_reads.o: ./inc/assert_helpers.h ./inc/formats.h ./inc/typdefine.h
+./src/kmers_reads.o: ./inc/timer.h ./inc/pat.h ./inc/alphabet.h
+./src/kmers_reads.o: ./inc/random_source.h ./inc/threading.h
+./src/kmers_reads.o: ./inc/tinythread.h ./inc/fast_mutex.h ./inc/filebuf.h
+./src/kmers_reads.o: ./inc/qual.h ./inc/search_globals.h ./inc/sstring.h
+./src/kmers_reads.o: ./inc/ds.h ./inc/read.h ./inc/util.h
+./src/kmers_reads.o: ./inc/kmers_delimitor.h ./inc/tokenize.h
+./src/kmers_reads.o: ./inc/kmers_initparam.h
+./src/reorderdrive.o: ./inc/reorderdrive.h ./inc/read.h ./inc/ds.h
+./src/reorderdrive.o: ./inc/assert_helpers.h ./inc/threading.h
+./src/reorderdrive.o: ./inc/tinythread.h ./inc/fast_mutex.h
+./src/reorderdrive.o: ./inc/random_source.h ./inc/suffix_commons.h
+./src/reorderdrive.o: ./inc/formats.h ./inc/typdefine.h ./inc/timer.h
+./src/reorderdrive.o: ./inc/sstring.h ./inc/alphabet.h ./inc/filebuf.h
+./src/reorderdrive.o: ./inc/util.h ./inc/kmers_reads.h ./inc/pat.h
+./src/reorderdrive.o: ./inc/qual.h ./inc/search_globals.h
+./src/reorderdrive.o: ./inc/kmers_delimitor.h ./inc/tokenize.h
+./src/reorderdrive.o: ./inc/kmers_initparam.h ./inc/linearmatching.h
+./src/reorderdrive.o: ./inc/suffixtrie.h ./inc/node.h
+./src/threadwrapper.o: ./inc/threadwrapper.h ./inc/tinythread.h
+./src/search_globals.o: ./inc/search_globals.h

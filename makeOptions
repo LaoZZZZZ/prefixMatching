@@ -1,0 +1,10 @@
+OBJECTS=$(SOURCES:.cpp=.o)
+EXECUTABLE=run
+all: $(SOURCES) $(EXECUTABLE)
+clean:
+	$(RM) $(OBJECTS)
+$(EXECUTABLE): $(OBJECTS) 
+	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
+.cpp.o:
+	$(CC)  -c $(CFLAGS) $< -o $@
+

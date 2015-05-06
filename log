@@ -1,0 +1,4 @@
+nohup: ignoring input
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  can not open file ../suffix_matching/reads/A019_001.fq
+./simulation.sh: line 6: 10640 Aborted                 (core dumped) ./run ../suffix_matching/reads/A019_001.fq 1 $prog 4

@@ -1,0 +1,14 @@
+CC=g++
+CFLAGS=-c -Wall
+LDFLAGS=
+SOURCE	= ./src/random_source.cpp ./src/linearmatching.cpp ./src/node.cpp ./src/tinythread.cpp ./src/main.cpp ./src/random_util.cpp ./src/pat.cpp ./src/ds.cpp ./src/suffixtrie.cpp ./src/kmers_initparam.cpp ./src/alphabet.cpp ./src/kmers_delimitor.cpp ./src/kmers_reads.cpp ./src/qual.cpp ./src/reorderdrive.cpp ./src/threadwrapper.cpp ./src/search_globals.cpp
+OBJECTS=$(SOURCE:.cpp=.o)
+EXECUTABLE=run
+
+all: $(SOURCES) $(EXECUTABLE)
+    
+$(EXECUTABLE): $(OBJECTS) 
+	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
+
+.cpp.o:
+	$(CC) $(CFLAGS) $< -o $@
